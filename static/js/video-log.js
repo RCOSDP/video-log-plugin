@@ -1,17 +1,17 @@
 var myPlayer = videojs('video_player');
 
-/* 早送り/巻き戻し ボタン追加、秒数指定 */
+/* Added fast forward / fast rewind buttons */
 myPlayer.seekButtons({
     forward: 15,
     back: 15
 });
 
-/* 音量位置記憶 */
+/* Save the volume positio */
 myPlayer.persistvolume({
     namespace: "Virality-Is-Reality"
 });
 
-/* ログ記録 */
+/* Log records */
 function log_post(event,detail) {
     $.ajax({
         type: 'POST',
@@ -27,7 +27,7 @@ function log_post(event,detail) {
     });
 }
 
-/* スライダー操作時間計算 */
+/* Record the start and end of seek time */
 var previousTime = 0;
 var currentTime = 0;
 var seekStart = null;
@@ -45,7 +45,7 @@ myPlayer.on('seeked', function() {
     seekStart = null;
 });
 
-/* 字幕情報取得 */
+/* Record subtitle information */
 var timeout;
 myPlayer.textTracks().on("change", function action(event) {
     clearTimeout(timeout)

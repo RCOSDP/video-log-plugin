@@ -4,37 +4,36 @@ Release 1.0
 
 KNOWN ISSUES:
 
-* 受講登録者のみ閲覧できるコースでIEを利用した場合，URLモジュールのポップアップ表示にすると動画再生ページにアクセスできない．
-コース受講登録判定はリファラで判断している．IEではポップアップ表示のリファラが取得できないため、受講登録しているかどうか判定できない．
+* When IE is used in courses viewable only for enrolled users, the video does not play in URL module pop-up display setting.
+The referer determines the course enrolled users. Referer in the pop-up display cannot be acquired when using IE, thus unable to decide on the enrolled user.
 
-* リファラを偽造すると，受講登録していないコースのビデオが閲覧できる．
-コース受講登録判定はリファラで判断している．リファラ偽造ソフトでリファラを偽造すると，受講登録していないコースのビデオが閲覧できる．
+* Fake referers are enabled to view videos of unregistered courses. 
+The referer determines the course enrolled users. Viewing videos of unregistered courses are enabled with referers created using fake referer software.
 
-* iOSフルスクリーン時に速度変調，早送り，巻き戻しできない．
-iOSでビデオをフルスクリーンにした場合，iOS固有のビデオプレイヤーで再生される．そのため，速度変調，早送り，巻き戻し機能が実装されていない．
+* Velocity modulation, fast-forward, and fast-rewind functions are disabled in iOS full screen.
+When playing a video in full screen on iOS, the video is played with a video player unique to iOS. Therefore velocity modulation, fast-forward, and fast-rewind functions are not embedded.
 
-* PCの強制終了，スマートフォンの画面を切り替え，ブラウザの終了などの操作で動画再生を途中で中断した場合，
-そのイベントが取得できないため，どこまで動画を再生したかを取得することはできない．
-次の二つのログを付き合わせて，どこまで動画を再生したかを解析する．
+* When video play is interrupted due to PC force-quit, smartphone screen change or Web browser closing, the event is not acquired to restart from the position it stopped playing.
+Accumulates the following two data to analyze the last played position:
 
-	1)	current timeを定期的に記録する 
-	2)	Wowzaログ
+	1)	The latest record of the current time
+	2)	Wowza log
 
-* video.jsではJavaScriptを利用してイベントを取得し，PHPのfile_put_contents 関数を用いて、データをファイルに書き込んでいる．
-Syslog規格に従っていないため，大量のイベント，トラフィックの輻輳が発生した場合，欠損する可能性がある．
+* Acquires the event using JavaScript for video.js, writing data to files using PHP file_put_contents function.
+Does not follow Syslog standard having the possibility to lose some data when loads of events and traffic congestion occurs.
 
-* MoodleのURLモジュールで，アピアランスを「埋め込み」とすると、一部ブラウザでフルスクリーンボタンが機能しない．
+* When setting the appearance to "embed" in Moodle URL module, the full-screen button does not work in some browsers.
 
-	・機能する
-	(Windows) Edge,Chrome
-	(Android) Chrome
+    ・Works on:
+    (Windows) Edge, Chrome
+    (Android) Chrome
 
-	・機能しない
-	(Windows) IE,FireFox
-	(MacOS) Safari
-	(iOS) Safari
+    ・Does not work on:
+    (Windows) IE,FireFox
+    (MacOS) Safari
+    (iOS) Safari
 
-Moodleの埋め込み表示用のソースのiframeに、フルスクリーンを許可する記述（webkitallowfullscreen , mozallowfullscreen, allowfullscreen）がない。
+There is no description (webkitallowfullscreen, mozallowfullscreen, allowfullscreen) to allow full screen in the Moodle source code for an embedded display.
 
-	(案1)URLモジュールのアピアランスで「埋め込み」を選択しない
-	(案2)Pageモジュールを利用し，直接iframeを記述する
+    (Suggestion 1) Do not select "embed" as an appearance in the URL module.
+    (Suggestion 2) Use the page module and directly describe an iframe.

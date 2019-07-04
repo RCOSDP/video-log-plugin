@@ -32,7 +32,7 @@ if($USER->id > $authnumber){
 
         $logdata = $date . "	" . $time . "	" . $tz .  "	";
         for ($i = 1; $i <= 35; $i++) {
-            // Wowza‚Ìo—ÍƒƒO—ñ‚Ì•ª‚¸‚ç‚µ‚Ä‚é
+            // Leaving space for writing Wowza log
             $logdata .= "-	";
         }
         $logdata .= $event . "	" . e($detail) . "	" . e($file) . "	" . e($query) . "	" . e($current) . "	" . e($ip) . "	" . e($ua) . "	" . e($ref) . "	" . $uid . "\n";

@@ -3,9 +3,9 @@
 // Moodle config file
 require(__DIR__.'/../../config.php');
 
-/* Moodleログインの有無で処理を止める
- * 0 : ゲストユーザーを含めた認証済みユーザーは全て許可
- * 1 : ゲストユーザーを除く認証済みユーザーは全て許可
+/* Change process when logged in with or without Moodle login.
+ * 0: Allow all users authenticated including guest users.
+ * 1: Allow all users authenticated except guest users．
  */
 $authnumber  = 0;
 

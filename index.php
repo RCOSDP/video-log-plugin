@@ -42,9 +42,9 @@ if($USER->id > $authnumber){
 }
 
 $ref = $_SERVER["HTTP_REFERER"];
-$ref_case1 = $CFG->wwwroot . "/course/view.php?";   // Moodle URL(ポップアップ/オープン)からアクセス
-$ref_case2 = $CFG->wwwroot . "/mod/url/view.php?";  // Moodle URL(埋め込み)からアクセス
-$ref_case3 = $CFG->wwwroot . "/pluginfile.php/";    // Moodle リソースに登録したCHiLOBookからアクセス
+$ref_case1 = $CFG->wwwroot . "/course/view.php?";   // Access from Moodle URL(popup/open)
+$ref_case2 = $CFG->wwwroot . "/mod/url/view.php?";  // Access from Moodle URL(embed)
+$ref_case3 = $CFG->wwwroot . "/pluginfile.php/";    // Access form CHiLO Book registered in Moodle Resource
 
 if(strstr($ref,$ref_case1)){
     $debug = true;
